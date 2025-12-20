@@ -8,6 +8,7 @@ import {
 } from "react-icons/fa";
 import { MdPhoneIphone } from "react-icons/md";
 import { BsGlobe, BsNintendoSwitch } from "react-icons/bs";
+import { HiMiniQuestionMarkCircle } from "react-icons/hi2";
 import type { Platform } from "@/hooks/useGames";
 import { HStack, Icon } from "@chakra-ui/react";
 import type { IconType } from "react-icons";
@@ -34,7 +35,11 @@ const PlatformIconList = ({ platforms }: Props) => {
       {platforms.map((platform) => (
         <Icon
           key={platform.id}
-          as={iconMap[platform.slug]}
+          as={
+            iconMap[platform.slug] !== undefined
+              ? iconMap[platform.slug]
+              : HiMiniQuestionMarkCircle
+          }
           color="gray.500"
           boxSize={5}
         />
