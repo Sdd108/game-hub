@@ -30,17 +30,22 @@ function App() {
         lg: "200px 1fr",
       }}
     >
+      {/* NavBar */}
       <GridItem area="nav">
         <NavBar
           onSearch={(searchText) => setGameQuery({ ...gameQuery, searchText })}
         />
       </GridItem>
-      <GridItem hideBelow="lg" area="aside" paddingX={5}>
+
+      {/* Genres */}
+      <GridItem hideBelow="lg" area="aside" paddingX={5} marginY={7}>
         <GenreList
           selectedGenre={gameQuery.genre}
           onSelectGenre={(genre) => setGameQuery({ ...gameQuery, genre })}
         />
       </GridItem>
+
+      {/* Main Layout */}
       <GridItem area="main">
         <Box paddingLeft={3}>
           <GameHeading gameQuery={gameQuery} />
