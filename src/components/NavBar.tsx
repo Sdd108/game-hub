@@ -1,6 +1,6 @@
-import { HStack, Image } from "@chakra-ui/react";
-import { ColorModeButton } from "@/components/ui/color-mode";
 import logo from "@/assets/logo.webp";
+import { ColorModeButton } from "@/components/ui/color-mode";
+import { HStack, Image } from "@chakra-ui/react";
 import SearchInput from "./SearchInput";
 
 interface Props {

@@ -1,6 +1,5 @@
 import useGenres, { type Genre } from "@/hooks/useGenres";
 import getCroppedImageUrl from "@/services/image-url";
-import { IoHome } from "react-icons/io5";
 import {
   Button,
   Heading,
@@ -9,6 +8,7 @@ import {
   List,
   Spinner,
 } from "@chakra-ui/react";
+import { IoHome } from "react-icons/io5";
 
 interface Props {
   onSelectGenre: (genre: Genre | null) => void;

@@ -1,8 +1,8 @@
+import platforms from "@/components/data/platforms";
 import apiClient, { type FetchResponse } from "@/services/api-client";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
-import platforms from "@/components/data/platforms";
 
-interface Platform {
+export interface Platform {
   id: number,
   name: string;
   slug: string;
