@@ -1,6 +1,6 @@
 import type { GameQuery } from "@/App";
 import { type Platform } from "@/hooks/usePlatforms";
-import apiClient, { type FetchResponse } from "@/services/api-client";
+import APIClient, { type FetchResponse } from "@/services/api-client";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 
 export interface Game {
@@ -12,14 +12,7 @@ export interface Game {
   rating_top: number
 }
 
-// const useGames1 = (gameQuery: GameQuery) =>
-//   useData<Game>('/games', {
-//     params: {
-//       genres: gameQuery.genre?.id,
-//       platforms: gameQuery.platform?.id,
-//       ordering: gameQuery.sortOrder,
-//       search: gameQuery.searchText
-//     }}, [gameQuery])
+const apiClient = new APIClient<Game>('/games');
 
 const useGames = (gameQuery: GameQuery) => useQuery<FetchResponse<Game>, Error>({
   queryKey: ['games', {
@@ -28,7 +21,7 @@ const useGames = (gameQuery: GameQuery) => useQuery<FetchResponse<Game>, Error>(
       ordering: gameQuery.sortOrder,
       search: gameQuery.searchText
     }],
-  queryFn: ({ signal }) => apiClient.get<FetchResponse<Game>>('/games', {
+  queryFn: ({ signal }) => apiClient.getAll({
     signal,
     params: {
       genres: gameQuery.genre?.id,
@@ -36,7 +29,7 @@ const useGames = (gameQuery: GameQuery) => useQuery<FetchResponse<Game>, Error>(
       ordering: gameQuery.sortOrder,
       search: gameQuery.searchText
     }
-  }).then(res => res.data),
+  }),
   staleTime: 1000 * 60 * 10, // 10mins
   placeholderData: keepPreviousData
 })
