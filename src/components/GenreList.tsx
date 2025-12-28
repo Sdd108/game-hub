@@ -11,8 +11,8 @@ import {
 import { IoHome } from "react-icons/io5";
 
 interface Props {
-  onSelectGenre: (genre: Genre | null) => void;
-  selectedGenre: Genre | null;
+  onSelectGenre: (genre?: Genre) => void;
+  selectedGenre?: Genre;
 }
 
 const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
@@ -32,7 +32,7 @@ const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
             <IoHome />
             <Button
               fontWeight={!selectedGenre ? "bold" : "normal"}
-              onClick={() => onSelectGenre(null)}
+              onClick={() => onSelectGenre(undefined)}
               fontSize="lg"
               variant="ghost"
             >

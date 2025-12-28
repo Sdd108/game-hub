@@ -10,9 +10,9 @@ import SortSelector from "./components/SortSelector";
 import type { Genre } from "./hooks/useGenres";
 
 export interface GameQuery {
-  genre: Genre | null;
-  platform: Platform | null;
-  sortOrder: string;
+  genre?: Genre;
+  platform?: Platform;
+  sortOrder?: string;
   searchText: string;
   page?: number;
   page_size?: number;

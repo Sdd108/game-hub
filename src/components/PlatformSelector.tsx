@@ -3,8 +3,8 @@ import { Button, Menu, Portal } from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
 
 interface Props {
-  selectedPlatform: Platform | null;
-  onSelectPlatform: (platform: Platform | null) => void;
+  selectedPlatform?: Platform;
+  onSelectPlatform: (platform?: Platform) => void;
 }
 
 const PlatformSelector = ({ selectedPlatform, onSelectPlatform }: Props) => {
@@ -23,7 +23,11 @@ const PlatformSelector = ({ selectedPlatform, onSelectPlatform }: Props) => {
       <Portal>
         <Menu.Positioner>
           <Menu.Content>
-            <Menu.Item onClick={() => onSelectPlatform(null)} key={0} value="">
+            <Menu.Item
+              onClick={() => onSelectPlatform(undefined)}
+              key={0}
+              value=""
+            >
               All Platforms
             </Menu.Item>
             <Menu.Separator />
