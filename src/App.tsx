@@ -1,5 +1,5 @@
 import { type Platform } from "@/hooks/usePlatforms";
-import { Box, Button, Grid, GridItem, HStack } from "@chakra-ui/react";
+import { Box, Grid, GridItem, HStack } from "@chakra-ui/react";
 import { useState } from "react";
 import GameGridInfinite from "./components/GameGridInfinite";
 import GameHeading from "./components/GameHeading";
