@@ -1,7 +1,8 @@
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import ms from "ms";
 import type { GameQuery } from "@/App";
 import { type Platform } from "@/hooks/usePlatforms";
 import APIClient, { type FetchResponse } from "@/services/api-client";
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
 
 export interface Game {
   id: number;
@@ -30,7 +31,7 @@ const useGames = (gameQuery: GameQuery) => useQuery<FetchResponse<Game>, Error>(
       search: gameQuery.searchText
     }
   }),
-  staleTime: 1000 * 60 * 10, // 10mins
+  staleTime: ms("10mins"),
   placeholderData: keepPreviousData
 })
 

@@ -1,7 +1,8 @@
+import { keepPreviousData, useInfiniteQuery } from "@tanstack/react-query";
+import ms from "ms";
 import type { GameQuery } from "@/App";
 import { type Platform } from "@/hooks/usePlatforms";
 import APIClient, { type FetchResponse } from "@/services/api-client";
-import { keepPreviousData, useInfiniteQuery } from "@tanstack/react-query";
 
 export interface Game {
   id: number;
@@ -45,7 +46,7 @@ const useInfiniteGames = (gameQuery: GameQuery) => useInfiniteQuery<FetchRespons
 
   initialPageParam: 1,
 
-  staleTime: 1000 * 60 * 10, // 10mins
+  staleTime: ms("10mins"),
 
   placeholderData: keepPreviousData,
 
