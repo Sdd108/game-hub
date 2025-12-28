@@ -1,19 +1,21 @@
-import { Box, Grid, GridItem, HStack } from "@chakra-ui/react";
-import NavBar from "./components/NavBar";
-import GameGrid from "./components/GameGrid";
-import GenreList from "./components/GenreList";
-import { useState } from "react";
-import type { Genre } from "./hooks/useGenres";
-import PlatformSelector from "./components/PlatformSelector";
 import { type Platform } from "@/hooks/usePlatforms";
-import SortSelector from "./components/SortSelector";
+import { Box, Button, Grid, GridItem, HStack } from "@chakra-ui/react";
+import { useState } from "react";
+import GameGridInfinite from "./components/GameGridInfinite";
 import GameHeading from "./components/GameHeading";
+import GenreList from "./components/GenreList";
+import NavBar from "./components/NavBar";
+import PlatformSelector from "./components/PlatformSelector";
+import SortSelector from "./components/SortSelector";
+import type { Genre } from "./hooks/useGenres";
 
 export interface GameQuery {
   genre: Genre | null;
   platform: Platform | null;
   sortOrder: string;
   searchText: string;
+  page?: number;
+  page_size?: number;
 }
 
 function App() {
@@ -64,7 +66,7 @@ function App() {
             />
           </HStack>
         </Box>
-        <GameGrid gameQuery={gameQuery} />
+        <GameGridInfinite gameQuery={gameQuery} />
       </GridItem>
     </Grid>
   );
