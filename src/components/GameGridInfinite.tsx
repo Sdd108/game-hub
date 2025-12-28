@@ -11,8 +11,14 @@ interface Props {
 }
 
 const GameGridInfinite = ({ gameQuery }: Props) => {
-  const { data, error, isLoading, fetchNextPage, isFetchingNextPage } =
-    useInfiniteGames(gameQuery);
+  const {
+    data,
+    error,
+    isLoading,
+    fetchNextPage,
+    isFetchingNextPage,
+    hasNextPage,
+  } = useInfiniteGames(gameQuery);
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8];
 
   if (error) return <Text>{error.message}</Text>;
@@ -36,14 +42,15 @@ const GameGridInfinite = ({ gameQuery }: Props) => {
           </React.Fragment>
         ))}
       </SimpleGrid>
-      <Button
-        disabled={isFetchingNextPage}
-        className="btn btn-primary"
-        onClick={() => fetchNextPage()}
-        marginY={3}
-      >
-        {isFetchingNextPage ? "Loading..." : "Load More"}
-      </Button>
+      {hasNextPage && (
+        <Button
+          disabled={isFetchingNextPage}
+          onClick={() => fetchNextPage()}
+          marginY={3}
+        >
+          {isFetchingNextPage ? "Loading..." : "Load More"}
+        </Button>
+      )}
     </Box>
   );
 };
