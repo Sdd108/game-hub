@@ -1,15 +1,12 @@
-import type { GameQuery } from "@/App";
 import useGames from "@/hooks/useGames";
+import useGameQueryStore from "@/store";
 import { SimpleGrid, Text } from "@chakra-ui/react";
 import GameCard from "./GameCard";
 import GameCardContainer from "./GameCardContainer";
 import GameCardSkeleton from "./GameCardSkeleton";
 
-interface Props {
-  gameQuery: GameQuery;
-}
-
-const GameGrid = ({ gameQuery }: Props) => {
+const GameGrid = () => {
+  const gameQuery = useGameQueryStore((s) => s.gameQuery);
   const { data, error, isLoading } = useGames(gameQuery);
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8];
 

@@ -1,5 +1,6 @@
-import useGenres, { type Genre } from "@/hooks/useGenres";
+import useGenres from "@/hooks/useGenres";
 import getCroppedImageUrl from "@/services/image-url";
+import useGameQueryStore from "@/store";
 import {
   Button,
   Heading,
@@ -10,13 +11,10 @@ import {
 } from "@chakra-ui/react";
 import { IoHome } from "react-icons/io5";
 
-interface Props {
-  onSelectGenre: (genre?: Genre) => void;
-  selectedGenre?: Genre;
-}
-
-const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
+const GenreList = () => {
   const { data, error, isLoading } = useGenres();
+  const setSelectedGenre = useGameQueryStore((s) => s.setGenre);
+  const selectedGenre = useGameQueryStore((s) => s.gameQuery.genre);
 
   if (error) return null;
   if (isLoading) return <Spinner />;
@@ -32,7 +30,7 @@ const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
             <IoHome />
             <Button
               fontWeight={!selectedGenre ? "bold" : "normal"}
-              onClick={() => onSelectGenre(undefined)}
+              onClick={() => setSelectedGenre(undefined)}
               fontSize="lg"
               variant="ghost"
             >
@@ -53,7 +51,7 @@ const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
                 whiteSpace="normal"
                 textAlign="left"
                 fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
-                onClick={() => onSelectGenre(genre)}
+                onClick={() => setSelectedGenre(genre)}
                 fontSize="lg"
                 variant="ghost"
               >
