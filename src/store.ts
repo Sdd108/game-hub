@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
-import { type Platform } from "@/hooks/usePlatforms";
-import type { Genre } from "./hooks/useGenres";
+import { type Platform } from "@/entities/Platform";
+import type { Genre } from "@/entities/Genre";
 
 export interface GameQuery {
   genre?: Genre;
