@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
-import { type Platform } from "@/entities/Platform";
-import type { Genre } from "@/entities/Genre";
+import type Platform from "@/entities/Platform";
+import type Genre from "@/entities/Genre";
 
 export interface GameQuery {
   genre?: Genre;
@@ -20,12 +20,15 @@ interface GameQueryStore {
   setSortOrder: (sortOrder?: string) => void;
 }
 
-const useGameQueryStore = create<GameQueryStore>(set => ({
+const useGameQueryStore = create<GameQueryStore>((set) => ({
   gameQuery: {},
-  setSearchText: (searchText) => set(() => ({gameQuery: { searchText }})),
-  setGenre: (genre) => set((store) => ({ gameQuery: { ...store.gameQuery, genre }})),
-  setPlatform: (platform) => set((store) => ({ gameQuery: { ...store.gameQuery, platform }})),
-  setSortOrder: (sortOrder) => set((store) => ({ gameQuery: { ...store.gameQuery, sortOrder }}))
+  setSearchText: (searchText) => set(() => ({ gameQuery: { searchText } })),
+  setGenre: (genre) =>
+    set((store) => ({ gameQuery: { ...store.gameQuery, genre } })),
+  setPlatform: (platform) =>
+    set((store) => ({ gameQuery: { ...store.gameQuery, platform } })),
+  setSortOrder: (sortOrder) =>
+    set((store) => ({ gameQuery: { ...store.gameQuery, sortOrder } })),
 }));
 
 export default useGameQueryStore;
